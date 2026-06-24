@@ -1,0 +1,993 @@
+
+<!doctype html>
+<html lang="en" class="no-js">
+  <head>
+    
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width,initial-scale=1">
+      
+        <meta name="description" content="Practical Feature Engineering for Machine Learning">
+      
+      
+        <meta name="author" content="Josue">
+      
+      
+      
+        <link rel="prev" href="../..">
+      
+      
+        <link rel="next" href="../feature_target_relationship/">
+      
+      
+        
+      
+      
+      <link rel="icon" href="../../assets/images/favicon.png">
+      <meta name="generator" content="mkdocs-1.6.1, mkdocs-material-9.7.6">
+    
+    
+      
+        <title>What is Feature Engineering - Feature Engineering Portfolio</title>
+      
+    
+    
+      <link rel="stylesheet" href="../../assets/stylesheets/main.484c7ddc.min.css">
+      
+      
+
+
+    
+    
+      
+    
+    
+      
+        
+        
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,300i,400,400i,700,700i%7CRoboto+Mono:400,400i,700,700i&display=fallback">
+        <style>:root{--md-text-font:"Roboto";--md-code-font:"Roboto Mono"}</style>
+      
+    
+    
+    <script>__md_scope=new URL("../..",location),__md_hash=e=>[...e].reduce(((e,_)=>(e<<5)-e+_.charCodeAt(0)),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
+    
+      
+
+    
+    
+  </head>
+  
+  
+    <body dir="ltr">
+  
+    
+    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
+    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
+    <label class="md-overlay" for="__drawer"></label>
+    <div data-md-component="skip">
+      
+        
+        <a href="#what-is-feature-engineering" class="md-skip">
+          Skip to content
+        </a>
+      
+    </div>
+    <div data-md-component="announce">
+      
+    </div>
+    
+    
+      
+
+<header class="md-header" data-md-component="header">
+  <nav class="md-header__inner md-grid" aria-label="Header">
+    <a href="../.." title="Feature Engineering Portfolio" class="md-header__button md-logo" aria-label="Feature Engineering Portfolio" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54"/></svg>
+
+    </a>
+    <label class="md-header__button md-icon" for="__drawer">
+      
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 6h18v2H3zm0 5h18v2H3zm0 5h18v2H3z"/></svg>
+    </label>
+    <div class="md-header__title" data-md-component="header-title">
+      <div class="md-header__ellipsis">
+        <div class="md-header__topic">
+          <span class="md-ellipsis">
+            Feature Engineering Portfolio
+          </span>
+        </div>
+        <div class="md-header__topic" data-md-component="header-topic">
+          <span class="md-ellipsis">
+            
+              What is Feature Engineering
+            
+          </span>
+        </div>
+      </div>
+    </div>
+    
+    
+      <script>var palette=__md_get("__palette");if(palette&&palette.color){if("(prefers-color-scheme)"===palette.color.media){var media=matchMedia("(prefers-color-scheme: light)"),input=document.querySelector(media.matches?"[data-md-color-media='(prefers-color-scheme: light)']":"[data-md-color-media='(prefers-color-scheme: dark)']");palette.color.media=input.getAttribute("data-md-color-media"),palette.color.scheme=input.getAttribute("data-md-color-scheme"),palette.color.primary=input.getAttribute("data-md-color-primary"),palette.color.accent=input.getAttribute("data-md-color-accent")}for(var[key,value]of Object.entries(palette.color))document.body.setAttribute("data-md-color-"+key,value)}</script>
+    
+    
+    
+      
+      
+        <label class="md-header__button md-icon" for="__search">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        </label>
+        <div class="md-search" data-md-component="search" role="dialog">
+  <label class="md-search__overlay" for="__search"></label>
+  <div class="md-search__inner" role="search">
+    <form class="md-search__form" name="search">
+      <input type="text" class="md-search__input" name="query" aria-label="Search" placeholder="Search" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="search-query" required>
+      <label class="md-search__icon md-icon" for="__search">
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11z"/></svg>
+      </label>
+      <nav class="md-search__options" aria-label="Search">
+        
+        <button type="reset" class="md-search__icon md-icon" title="Clear" aria-label="Clear" tabindex="-1">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 6.41 17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z"/></svg>
+        </button>
+      </nav>
+      
+    </form>
+    <div class="md-search__output">
+      <div class="md-search__scrollwrap" tabindex="0" data-md-scrollfix>
+        <div class="md-search-result" data-md-component="search-result">
+          <div class="md-search-result__meta">
+            Initializing search
+          </div>
+          <ol class="md-search-result__list" role="presentation"></ol>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+      
+    
+    
+  </nav>
+  
+</header>
+    
+    <div class="md-container" data-md-component="container">
+      
+      
+        
+          
+            
+<nav class="md-tabs" aria-label="Tabs" data-md-component="tabs">
+  <div class="md-grid">
+    <ul class="md-tabs__list">
+      
+        
+  
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../.." class="md-tabs__link">
+        
+  
+  
+    
+  
+  Home
+
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+  
+    
+  
+  
+    
+    
+      <li class="md-tabs__item md-tabs__item--active">
+        <a href="./" class="md-tabs__link">
+          
+  
+  
+  Machine Learning Foundations
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../../feature_engineering/feature_discovery/" class="md-tabs__link">
+          
+  
+  
+  Feature Engineering
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../../practical_cases/house_prices/" class="md-tabs__link">
+          
+  
+  
+  Practical Case Study
+
+        </a>
+      </li>
+    
+  
+
+      
+    </ul>
+  </div>
+</nav>
+          
+        
+      
+      <main class="md-main" data-md-component="main">
+        <div class="md-main__inner md-grid">
+          
+            
+              
+              <div class="md-sidebar md-sidebar--primary" data-md-component="sidebar" data-md-type="navigation" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+
+  
+
+
+<nav class="md-nav md-nav--primary md-nav--lifted" aria-label="Navigation" data-md-level="0">
+  <label class="md-nav__title" for="__drawer">
+    <a href="../.." title="Feature Engineering Portfolio" class="md-nav__button md-logo" aria-label="Feature Engineering Portfolio" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54"/></svg>
+
+    </a>
+    Feature Engineering Portfolio
+  </label>
+  
+  <ul class="md-nav__list" data-md-scrollfix>
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../.." class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Home
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+    
+  
+  
+  
+    
+    
+    
+    
+      
+        
+        
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--active md-nav__item--section md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_2" checked>
+        
+          
+          <label class="md-nav__link" for="__nav_2" id="__nav_2_label" tabindex="">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Machine Learning Foundations
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_2_label" aria-expanded="true">
+          <label class="md-nav__title" for="__nav_2">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Machine Learning Foundations
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+    
+  
+  
+  
+    <li class="md-nav__item md-nav__item--active">
+      
+      <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
+      
+      
+        
+      
+      
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    What is Feature Engineering
+  
+
+    
+  </span>
+  
+  
+
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <a href="./" class="md-nav__link md-nav__link--active">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    What is Feature Engineering
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+      
+        
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#introduction" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Introduction
+      
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../feature_target_relationship/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Feature Target Relationship
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../baseline_model/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Baseline Model
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+    
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+          
+        
+        <input class="md-nav__toggle md-toggle md-toggle--indeterminate" type="checkbox" id="__nav_3" >
+        
+          
+          <label class="md-nav__link" for="__nav_3" id="__nav_3_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Feature Engineering
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_3_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_3">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Feature Engineering
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../feature_engineering/feature_discovery/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Feature Discovery
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+    
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+          
+        
+        <input class="md-nav__toggle md-toggle md-toggle--indeterminate" type="checkbox" id="__nav_4" >
+        
+          
+          <label class="md-nav__link" for="__nav_4" id="__nav_4_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Practical Case Study
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_4_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_4">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Practical Case Study
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../practical_cases/house_prices/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    House Prices
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../practical_cases/results/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Results
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+  </ul>
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+            
+              
+              <div class="md-sidebar md-sidebar--secondary" data-md-component="sidebar" data-md-type="toc" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#introduction" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Introduction
+      
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+          
+          
+            <div class="md-content" data-md-component="content">
+              
+              <article class="md-content__inner md-typeset">
+                
+                  
+
+
+
+<h1 id="what-is-feature-engineering">What is Feature Engineering?</h1>
+<h2 id="introduction">Introduction</h2>
+<p>Feature Engineering is the process of creating, transforming, selecting, or combining variables (features) in order to make data more suitable for a machine learning problem.</p>
+<p>It is one of the most important stages in the machine learning workflow because the quality of the features often has a greater impact on model performance than the choice of algorithm itself.</p>
+<p>The purpose of feature engineering is to expose useful information contained in the data so that a machine learning model can learn patterns more effectively.</p>
+<hr />
+<h1 id="why-is-feature-engineering-important">Why is Feature Engineering Important?</h1>
+<p>Machine learning models can only learn relationships that are represented in the input data.</p>
+<p>If relevant information is hidden, poorly represented, or distributed across multiple variables, the model may struggle to learn it.</p>
+<p>Feature engineering helps reveal this information by transforming the original data into representations that are easier for the model to understand.</p>
+<p>In many real-world problems, performance improvements obtained through feature engineering are often larger than those achieved by switching from one machine learning algorithm to another.</p>
+<hr />
+<h1 id="objectives-of-feature-engineering">Objectives of Feature Engineering</h1>
+<p>Feature engineering is usually performed for one or more of the following reasons.</p>
+<h2 id="improve-predictive-performance">Improve Predictive Performance</h2>
+<p>The most common goal is to increase the predictive power of a model.</p>
+<p>New features can expose relationships that were not obvious in the original dataset, allowing the model to make more accurate predictions.</p>
+<hr />
+<h2 id="reduce-data-requirements">Reduce Data Requirements</h2>
+<p>Well-designed features can make patterns easier to learn.</p>
+<p>As a result, a model may require fewer training examples to achieve good performance.</p>
+<hr />
+<h2 id="reduce-computational-complexity">Reduce Computational Complexity</h2>
+<p>Some transformations can simplify the information contained in multiple variables.</p>
+<p>This may reduce training time, memory consumption, or model complexity.</p>
+<hr />
+<h2 id="improve-interpretability">Improve Interpretability</h2>
+<p>Feature engineering can create variables that are easier for humans to understand and reason about.</p>
+<p>Interpretability is especially important in domains such as finance, healthcare, and business analytics.</p>
+<hr />
+<h1 id="the-role-of-feature-engineering-in-machine-learning">The Role of Feature Engineering in Machine Learning</h1>
+<p>Feature engineering is part of the data preparation stage that takes place before model training.</p>
+<p>A typical machine learning workflow looks like this:</p>
+<pre><code class="language-text">Problem Definition
+        ↓
+Data Collection
+        ↓
+Data Cleaning
+        ↓
+Feature Engineering
+        ↓
+Feature Selection
+        ↓
+Model Training
+        ↓
+Model Evaluation
+        ↓
+Deployment
+</code></pre>
+<p>Feature engineering acts as the bridge between raw data and machine learning algorithms.</p>
+<hr />
+<h1 id="the-fundamental-principle-of-feature-engineering">The Fundamental Principle of Feature Engineering</h1>
+<p>A feature is only useful if it contains information related to the target variable and if the model is capable of learning that relationship.</p>
+<p>Different machine learning algorithms have different learning capabilities.</p>
+<p>For example:</p>
+<ul>
+<li>Linear models learn linear relationships naturally.</li>
+<li>Tree-based models can learn complex non-linear patterns.</li>
+<li>Neural networks can learn highly complex representations when sufficient data is available.</li>
+</ul>
+<p>Because of these differences, feature engineering should always take into account the strengths and limitations of the chosen model.</p>
+<hr />
+<h1 id="feature-engineering-as-an-extension-of-the-model">Feature Engineering as an Extension of the Model</h1>
+<p>A useful way to think about feature engineering is that every transformation becomes part of the model itself.</p>
+<p>When a transformation is applied to a variable, the representation of the data changes.</p>
+<p>This new representation may expose patterns that were difficult or impossible for the original model to learn.</p>
+<p>In practice, feature engineering increases the expressive power of a machine learning system without changing the algorithm.</p>
+<hr />
+<h1 id="types-of-feature-engineering">Types of Feature Engineering</h1>
+<p>Feature engineering techniques can generally be divided into several categories.</p>
+<h2 id="feature-creation">Feature Creation</h2>
+<p>Creating entirely new variables from existing information.</p>
+<p>Examples include:</p>
+<ul>
+<li>Ratios</li>
+<li>Mathematical combinations</li>
+<li>Aggregations</li>
+<li>Counts</li>
+</ul>
+<hr />
+<h2 id="feature-transformation">Feature Transformation</h2>
+<p>Modifying existing variables to improve their usefulness.</p>
+<p>Examples include:</p>
+<ul>
+<li>Logarithmic transformations</li>
+<li>Scaling</li>
+<li>Normalization</li>
+<li>Standardization</li>
+</ul>
+<hr />
+<h2 id="feature-extraction">Feature Extraction</h2>
+<p>Generating new variables that summarize information from multiple features.</p>
+<p>Examples include:</p>
+<ul>
+<li>Principal Component Analysis (PCA)</li>
+<li>Clustering-based features</li>
+</ul>
+<hr />
+<h2 id="feature-encoding">Feature Encoding</h2>
+<p>Transforming categorical variables into numerical representations.</p>
+<p>Examples include:</p>
+<ul>
+<li>One-Hot Encoding</li>
+<li>Label Encoding</li>
+<li>Target Encoding</li>
+</ul>
+<hr />
+<h1 id="characteristics-of-good-features">Characteristics of Good Features</h1>
+<p>A good feature typically satisfies several of the following conditions:</p>
+<ul>
+<li>Contains useful information about the target.</li>
+<li>Improves predictive performance.</li>
+<li>Reduces noise.</li>
+<li>Is stable across different datasets.</li>
+<li>Generalizes well to unseen data.</li>
+<li>Is understandable and interpretable.</li>
+</ul>
+<p>Not every generated feature will be useful.</p>
+<p>Feature engineering is therefore an experimental process that requires testing and validation.</p>
+<hr />
+<h1 id="feature-engineering-as-an-iterative-process">Feature Engineering as an Iterative Process</h1>
+<p>Feature engineering should not be viewed as a single step.</p>
+<p>Instead, it is an iterative cycle:</p>
+<pre><code class="language-text">Generate Hypothesis
+        ↓
+Create Feature
+        ↓
+Train Model
+        ↓
+Evaluate Performance
+        ↓
+Keep or Discard Feature
+        ↓
+Repeat
+</code></pre>
+<p>Each newly created feature should be evaluated against a baseline model to determine whether it provides measurable value.</p>
+<hr />
+<h1 id="key-takeaways">Key Takeaways</h1>
+<ul>
+<li>Feature engineering is the process of improving data representations for machine learning.</li>
+<li>The objective is to make relevant information easier for models to learn.</li>
+<li>Better features often have a greater impact than more complex algorithms.</li>
+<li>Every feature transformation effectively becomes part of the model.</li>
+<li>Feature engineering includes feature creation, transformation, extraction, and encoding.</li>
+<li>The process is iterative and should always be validated experimentally.</li>
+</ul>
+<hr />
+<h1 id="application-in-practice">Application in Practice</h1>
+<p>In a typical machine learning project, feature engineering involves:</p>
+<ol>
+<li>Understanding the problem domain.</li>
+<li>Studying the available variables.</li>
+<li>Formulating hypotheses about useful information.</li>
+<li>Creating new features.</li>
+<li>Evaluating their impact on model performance.</li>
+<li>Keeping only the features that improve the baseline.</li>
+</ol>
+<p>The remainder of this repository explores the most important feature engineering techniques and demonstrates how they can be applied to real-world predictive problems.</p>
+
+
+
+
+
+
+
+
+
+
+
+
+                
+              </article>
+            </div>
+          
+          
+<script>var target=document.getElementById(location.hash.slice(1));target&&target.name&&(target.checked=target.name.startsWith("__tabbed_"))</script>
+        </div>
+        
+      </main>
+      
+        <footer class="md-footer">
+  
+  <div class="md-footer-meta md-typeset">
+    <div class="md-footer-meta__inner md-grid">
+      <div class="md-copyright">
+  
+  
+    Made with
+    <a href="https://squidfunk.github.io/mkdocs-material/" target="_blank" rel="noopener">
+      Material for MkDocs
+    </a>
+  
+</div>
+      
+    </div>
+  </div>
+</footer>
+      
+    </div>
+    <div class="md-dialog" data-md-component="dialog">
+      <div class="md-dialog__inner md-typeset"></div>
+    </div>
+    
+    
+    
+      
+      
+      <script id="__config" type="application/json">{"annotate": null, "base": "../..", "features": ["navigation.tabs", "navigation.sections", "navigation.expand", "content.code.copy", "search.highlight"], "search": "../../assets/javascripts/workers/search.2c215733.min.js", "tags": null, "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}, "version": null}</script>
+    
+    
+      <script src="../../assets/javascripts/bundle.79ae519e.min.js"></script>
+      
+    
+  </body>
+</html>
