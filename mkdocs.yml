@@ -39,9 +39,9 @@ nav:
 
       - Results:
           practical_cases/results.md
-          
+
   - Practical Case Study:
-      - House Prices Notebook: practical_cases/house_prices.ipynb
+      - House Prices Notebook: practical_cases/house_prices
 
 plugins:
   - search
