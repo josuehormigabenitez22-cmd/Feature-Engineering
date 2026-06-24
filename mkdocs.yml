@@ -4,7 +4,6 @@ site_author: Josue
 
 theme:
   name: material
-
   features:
     - navigation.tabs
     - navigation.sections
@@ -12,37 +11,24 @@ theme:
     - content.code.copy
     - search.highlight
 
-nav:
-
-  - Home: index.md
-
-  - Machine Learning Foundations:
-
-      - What is Feature Engineering:
-          foundations/what_is_feature_engineering.md
-
-      - Feature Target Relationship:
-          foundations/feature_target_relationship.md
-
-      - Baseline Model:
-          foundations/baseline_model.md
-
-  - Feature Engineering:
-
-      - Feature Discovery:
-          feature_engineering/feature_discovery.md
-
-  - Practical Case Study:
-
-      - House Prices:
-          practical_cases/house_prices.md
-
-      - Results:
-          practical_cases/results.md
-
-  - Practical Case Study:
-      - House Prices Notebook: practical_cases/house_prices
-
 plugins:
   - search
   - mkdocs-jupyter
+
+nav:
+  - Home: index.md
+
+  - Foundations:
+      - What is Feature Engineering: foundations/what_is_feature_engineering.md
+      - Feature-Target Relationship: foundations/feature_target_relationship.md
+      - Baseline Model: foundations/baseline_model.md
+
+  - Feature Engineering:
+      - Feature Discovery: feature_engineering/feature_discovery.md
+      - Feature Discovery Notebook: feature_engineering/feature_discovery/
+
+  - Case Studies:
+      - House Prices:
+          - Overview: practical_cases/house_prices.md
+          - Notebook: practical_cases/house_prices/
+      - Results: practical_cases/results.md
