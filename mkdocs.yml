@@ -25,10 +25,10 @@ nav:
 
   - Feature Engineering:
       - Feature Discovery: feature_engineering/feature_discovery.md
-      - Feature Discovery Notebook: feature_engineering/feature_discovery/
+
 
   - Case Studies:
       - House Prices:
           - Overview: practical_cases/house_prices.md
-          - Notebook: practical_cases/house_prices/
+          - Notebook: practical_cases/house_prices.ipynb
       - Results: practical_cases/results.md
