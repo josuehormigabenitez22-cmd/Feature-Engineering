@@ -30,5 +30,5 @@ nav:
   - Case Studies:
       - House Prices:
           - Overview: practical_cases/house_prices.md
-          - Notebook: practical_cases/house_prices.ipynb
-      - Results: practical_cases/results.md
+          - Notebook: practical_cases/house_prices/
+          - Results: practical_cases/results.md
